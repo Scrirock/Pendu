@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    width: 100%;
+    font-size: 2rem;
+    background-color: #7de681;
+}
+
+#container{
+    display: flex;
+    flex-flow: column wrap;
+    width: 65%;
+    margin: auto;
+    height: 720px;
+    padding: 2rem;
+}
+
+#input, #image, #historiqueL, #check, #divMessage{
+    background-color: #1d6f1f;
+    border: 3px solid #042900;
+    border-radius: 2rem;
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: 5px 5px 5px #0a250a;
+}
+
+#divMessage{
+    background-color: #054a00;
+    border: 3px solid #0a250a;
+    text-align: center;
+}
+
+#image, #check{
+    text-align: center;
+}
+
+#historiqueL{
+    flex-basis: 100%;
+}
+
+input, button{
+    background-color: #7de681;
+}
