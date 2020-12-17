@@ -32,7 +32,6 @@ document.getElementById("historiqueL").append(history);
 function restart(){
     word = dico[Math.trunc(Math.random()*dico.length)]
     document.getElementById("tiret").innerHTML = ""
-    console.log(word)
     for (let i of word){
         document.getElementById("tiret").innerHTML += "-";
     }
