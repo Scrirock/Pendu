@@ -8,7 +8,7 @@ let dico = [
     "bateau", "oiseau",
     "poulet", "chat",
     "maison", "parapluie",
-    "tracteur", "asiette",
+    "tracteur", "assiette",
     "fourchette", "couteau",
     "verre", "ocean",
     "ecran", "pantalon",
@@ -18,15 +18,20 @@ let dico = [
     "orange", "decembre",
     "truite", "dauphin",
     "koala", "bureau",
-    "monsieur", "madamme",
+    "monsieur", "madame",
     "souris", "herisson",
     "vache", "velo",
     "girouette", "ustensile",
     "bouteille", "belgique"
 ]
 
+let badLetter = 1;
+let check;
+let history = document.createElement("p");
+document.getElementById("historiqueL").append(history);
 function restart(){
     word = dico[Math.trunc(Math.random()*dico.length)]
+    document.getElementById("tiret").innerHTML = ""
     console.log(word)
     for (let i of word){
         document.getElementById("tiret").innerHTML += "-";
@@ -34,6 +39,10 @@ function restart(){
     letter.value = "";
     document.getElementById("message").innerHTML = "";
     history.innerHTML = "";
+    document.getElementById("pendu").src = "pendu_1.png";
+    badLetter = 1;
+    check = Array.from(document.getElementById("tiret").innerHTML);
+    arrayLetter = [];
 }
 restart();
 document.getElementById("sendLetter").addEventListener("click", function (){
@@ -55,13 +64,9 @@ document.getElementById("sendLetter").addEventListener("click", function (){
     }
 });
 
-let check =  Array.from(document.getElementById("tiret").innerHTML);
 
 function game(){
-    let history = document.createElement("p");
-    history.innerHTML = "- " + letter.value;
-    document.getElementById("historiqueL").append(history);
-
+    history.innerHTML += "- " + letter.value + "<br>";
     if (word.includes(letter.value)) {
         for (let i = 0; i < word.length; i++) {
             if (letter.value === word[i]){
@@ -71,9 +76,20 @@ function game(){
         }
         document.getElementById("tiret").innerHTML = check.toString().replace(/,/gi, " ");
         document.getElementById("message").innerHTML = "La lettre à été placée";
+        if(check.toString().replace(/,/gi, "") === word){
+            document.getElementById("message").innerHTML = "Vous avez gagné";
+            restart();
+        }
     }
     else{
-        document.FAIT DES TRUC DEMAIN
+        if (badLetter<6) {
+            badLetter++;
+            document.getElementById("message").innerHTML = "Mauvaise lettre";
+            document.getElementById("pendu").src = "pendu_" + badLetter + ".png";
+        }
+        else{
+            restart()
+        }
     }
 
     letter.value = "";
